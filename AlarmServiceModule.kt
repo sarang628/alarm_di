@@ -1,9 +1,9 @@
 package com.sarang.alarm_test_app.di.alarm_di
 
 import android.util.Log
-import com.sryang.torang.data.AlarmListItem
-import com.sryang.torang.data.AlarmType
-import com.sryang.torang.data.AlarmUser
+import com.sryang.torang.data.alarm.AlarmListItem
+import com.sryang.torang.data.alarm.AlarmType
+import com.sryang.torang.data.alarm.AlarmUser
 import com.sryang.torang.usecase.GetAlarmUseCase
 import com.sryang.torang_repository.api.ApiAlarm
 import com.sryang.torang_repository.data.RemoteAlarm
