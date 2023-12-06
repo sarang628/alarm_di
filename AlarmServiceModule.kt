@@ -46,7 +46,7 @@ fun RemoteAlarm.toAlarmListItem(): AlarmListItem {
     Log.d("RemoteAlarm", this.toString())
     return AlarmListItem(
         id = this.alarmId,
-        user = AlarmUser(name = this.otherUser.userName ?: ""),
+        user = AlarmUser(name = this.otherUser.userName),
         contents = this.contents,
         otherPictureUrl = this.otherUser.profilePicUrl,
         createdDate = this.createDate,
