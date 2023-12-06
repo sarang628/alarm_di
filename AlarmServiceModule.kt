@@ -1,10 +1,10 @@
 package com.sarang.alarm_test_app.di.alarm_di
 
 import android.util.Log
+import com.sryang.torang.data.AlarmListItem
+import com.sryang.torang.data.AlarmType
+import com.sryang.torang.data.AlarmUser
 import com.sryang.torang.usecase.GetAlarmUseCase
-import com.sryang.torang.uistate.AlarmListItem
-import com.sryang.torang.uistate.AlarmType
-import com.sryang.torang.uistate.User
 import com.sryang.torang_repository.api.ApiAlarm
 import com.sryang.torang_repository.data.RemoteAlarm
 import com.sryang.torang_repository.data.dao.LoggedInUserDao
@@ -46,7 +46,7 @@ fun RemoteAlarm.toAlarmListItem(): AlarmListItem {
     Log.d("RemoteAlarm", this.toString())
     return AlarmListItem(
         id = this.alarmId,
-        user = User(name = this.otherUser.userName ?: ""),
+        user = AlarmUser(name = this.otherUser.userName ?: ""),
         contents = this.contents,
         otherPictureUrl = this.otherUser.profilePicUrl,
         createdDate = this.createDate,
