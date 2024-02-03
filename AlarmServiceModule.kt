@@ -6,10 +6,10 @@ import com.sryang.torang.data1.alarm.AlarmListItem
 import com.sryang.torang.data1.alarm.AlarmType
 import com.sryang.torang.data1.alarm.AlarmUser
 import com.sryang.torang.usecase.GetAlarmUseCase
-import com.sryang.torang_repository.api.ApiAlarm
-import com.sryang.torang_repository.data.RemoteAlarm
-import com.sryang.torang_repository.data.dao.LoggedInUserDao
-import com.sryang.torang_repository.session.SessionService
+import com.sarang.torang.api.ApiAlarm
+import com.sarang.torang.data.RemoteAlarm
+import com.sarang.torang.data.dao.LoggedInUserDao
+import com.sarang.torang.session.SessionService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
