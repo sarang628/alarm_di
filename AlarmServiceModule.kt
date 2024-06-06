@@ -24,7 +24,7 @@ class AlarmServiceModule {
     fun provideAlarmService(
         apiAlarm: ApiAlarm,
         sessionService: SessionService,
-        loggedInUserDao: LoggedInUserDao
+        loggedInUserDao: LoggedInUserDao,
     ): GetAlarmUseCase {
         return object : GetAlarmUseCase {
             override suspend fun getAlarm(): List<AlarmListItem> {
@@ -50,6 +50,9 @@ fun RemoteAlarm.toAlarmListItem(): AlarmListItem {
         otherPictureUrl = BuildConfig.PROFILE_IMAGE_SERVER_URL + this.otherUser.profilePicUrl,
         createdDate = this.createDate,
         indexDate = "",
-        type = AlarmType.LIKE
+        type = if (alarmType == "COMMENT") AlarmType.COMMENT else if (alarmType == "LIKE") AlarmType.LIKE else if (alarmType == "FOLLOW") AlarmType.FOLLOW else AlarmType.REPLY,
+        pictureUrl = BuildConfig.REVIEW_IMAGE_SERVER_URL + pictureUrl,
+        reviewId = reviewId,
+        otherUserId = otherUserId
     )
 }
