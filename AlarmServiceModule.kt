@@ -7,8 +7,8 @@ import com.sryang.torang.data1.alarm.AlarmType
 import com.sryang.torang.data1.alarm.AlarmUser
 import com.sryang.torang.usecase.GetAlarmUseCase
 import com.sarang.torang.api.ApiAlarm
-import com.sarang.torang.data.RemoteAlarm
 import com.sarang.torang.data.dao.LoggedInUserDao
+import com.sarang.torang.data.remote.response.AlarmAlarmModel
 import com.sarang.torang.session.SessionService
 import dagger.Module
 import dagger.Provides
@@ -41,7 +41,7 @@ class AlarmServiceModule {
     }
 }
 
-fun RemoteAlarm.toAlarmListItem(): AlarmListItem {
+fun AlarmAlarmModel.toAlarmListItem(): AlarmListItem {
     Log.d("RemoteAlarm", this.toString())
     return AlarmListItem(
         id = this.alarmId,
