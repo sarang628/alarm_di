@@ -7,7 +7,7 @@ import com.sarang.torang.data1.alarm.AlarmType
 import com.sarang.torang.data1.alarm.AlarmUser
 import com.sarang.torang.usecase.GetAlarmUseCase
 import com.sarang.torang.api.ApiAlarm
-import com.sarang.torang.data.dao.LoggedInUserDao
+import com.sarang.torang.core.database.dao.LoggedInUserDao
 import com.sarang.torang.data.remote.response.AlarmAlarmModel
 import com.sarang.torang.session.SessionService
 import dagger.Module
