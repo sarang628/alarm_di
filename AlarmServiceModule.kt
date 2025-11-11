@@ -36,7 +36,7 @@ class AlarmServiceModule {
             }
 
             override val isLogin: Flow<Boolean>
-                get() = loggedInUserDao.getLoggedInUser().map { it != null }
+                get() = loggedInUserDao.getLoggedInUserFlow().map { it != null }
         }
     }
 }
