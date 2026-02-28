@@ -2,7 +2,7 @@ package com.sarang.alarm_test_app.di.alarm_di
 
 import android.util.Log
 import com.sarang.torang.BuildConfig
-import com.sarang.torang.data1.alarm.AlarmListItem
+import com.sarang.torang.data1.alarm.AlarmListItemUIState
 import com.sarang.torang.data1.alarm.AlarmType
 import com.sarang.torang.data1.alarm.AlarmUser
 import com.sarang.torang.usecase.GetAlarmUseCase
@@ -27,8 +27,8 @@ class AlarmServiceModule {
         loggedInUserDao: LoggedInUserDao,
     ): GetAlarmUseCase {
         return object : GetAlarmUseCase {
-            override suspend fun getAlarm(): List<AlarmListItem> {
-                var list: List<AlarmListItem> = ArrayList()
+            override suspend fun getAlarm(): List<AlarmListItemUIState> {
+                var list: List<AlarmListItemUIState> = ArrayList()
                 sessionService.getToken()?.let {
                     list = apiAlarm.getAlarms(it).map { it.toAlarmListItem() }
                 }
@@ -41,9 +41,9 @@ class AlarmServiceModule {
     }
 }
 
-fun AlarmAlarmModel.toAlarmListItem(): AlarmListItem {
+fun AlarmAlarmModel.toAlarmListItem(): AlarmListItemUIState {
     Log.d("RemoteAlarm", this.toString())
-    return AlarmListItem(
+    return AlarmListItemUIState(
         id = this.alarmId,
         user = AlarmUser(name = this.otherUser.userName),
         contents = this.contents,
