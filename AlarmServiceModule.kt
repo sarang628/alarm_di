@@ -110,19 +110,19 @@ fun List<AlarmAlarmModel>.toAlarmListItemUiState(): List<AlarmListItemUIState> {
     }
     val list1 = ArrayList<AlarmListItemUIState>()
     if (today.isNotEmpty()) {
-        list1.add(AlarmListItemUIState.Index(indexDate = "오늘"))
+        list1.add(AlarmListItemUIState.Header(title = "오늘"))
         list1.addAll(today)
     }
     if (thisWeek.isNotEmpty()) {
-        list1.add(AlarmListItemUIState.Index(indexDate = "이번주"))
+        list1.add(AlarmListItemUIState.Header(title = "이번주"))
         list1.addAll(thisWeek)
     }
     if (thisMonth.isNotEmpty()) {
-        list1.add(AlarmListItemUIState.Index(indexDate = "이번달"))
+        list1.add(AlarmListItemUIState.Header(title = "이번달"))
         list1.addAll(thisMonth)
     }
     if (other.isNotEmpty()) {
-        list1.add(AlarmListItemUIState.Index(indexDate = "오래전"))
+        list1.add(AlarmListItemUIState.Header(title = "오래전"))
         list1.addAll(other)
     }
     return list1
