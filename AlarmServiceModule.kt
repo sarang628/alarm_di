@@ -3,7 +3,7 @@ package com.sarang.torang.di.alarm_di
 import com.sarang.torang.BuildConfig
 import com.sarang.torang.api.ApiAlarm
 import com.sarang.torang.core.database.dao.LoggedInUserDao
-import com.sarang.torang.data.remote.response.AlarmAlarmModel
+import com.sarang.torang.data.remote.response.AlarmApiModel
 import com.sarang.torang.data1.alarm.AlarmListItemUIState
 import com.sarang.torang.data1.alarm.AlarmType
 import com.sarang.torang.data1.alarm.AlarmUser
@@ -34,7 +34,7 @@ class AlarmServiceModule {
             override suspend fun getAlarm(): List<AlarmListItemUIState> {
                 var list: List<AlarmListItemUIState> = emptyList()
                 sessionService.getToken()?.let {
-                    list = apiAlarm.getAlarms(it).toAlarmListItemUiState()
+                    list = apiAlarm.findAll(it).body()?.toAlarmListItemUiState() ?:emptyList()
                 }
                 return list
             }
@@ -45,7 +45,7 @@ class AlarmServiceModule {
     }
 }
 
-fun List<AlarmAlarmModel>.toAlarmListItemUiState(): List<AlarmListItemUIState> {
+fun List<AlarmApiModel>.toAlarmListItemUiState(): List<AlarmListItemUIState> {
     val sdf = SimpleDateFormat("yyyy-MM-dd")
     val now = Date(System.currentTimeMillis())
     val today: List<AlarmListItemUIState> = this.filter { data ->
@@ -128,7 +128,7 @@ fun List<AlarmAlarmModel>.toAlarmListItemUiState(): List<AlarmListItemUIState> {
     return list1
 }
 
-fun AlarmAlarmModel.toAlarmListItem(): AlarmListItemUIState {
+fun AlarmApiModel.toAlarmListItem(): AlarmListItemUIState {
     return AlarmListItemUIState.Item(
         id              = this.alarmId,
         user            = AlarmUser(name = this.otherUser.userName),
