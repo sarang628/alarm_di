@@ -1,5 +1,6 @@
 package com.sarang.torang.di.alarm_di
 
+import android.util.Log
 import com.sarang.torang.BuildConfig
 import com.sarang.torang.api.ApiAlarm
 import com.sarang.torang.core.database.dao.LoggedInUserDao
@@ -21,6 +22,7 @@ import java.util.Date
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 
+const val tag = "__AlarmServiceModule"
 @InstallIn(SingletonComponent::class)
 @Module
 class AlarmServiceModule {
@@ -33,8 +35,15 @@ class AlarmServiceModule {
         return object : GetAlarmUseCase {
             override suspend fun getAlarm(): List<AlarmListItemUIState> {
                 var list: List<AlarmListItemUIState> = emptyList()
-                sessionService.getToken()?.let {
-                    list = apiAlarm.findAll(it).body()?.toAlarmListItemUiState() ?:emptyList()
+                try {
+                    sessionService.getToken()?.let {
+                        list = apiAlarm.findAll(it)
+                            .body()
+                            ?.toAlarmListItemUiState()
+                            ?: emptyList()
+                    }
+                } catch (e : Exception){
+                    Log.e(tag, "알람 리스트 로딩 실패 ${e.message}")
                 }
                 return list
             }
